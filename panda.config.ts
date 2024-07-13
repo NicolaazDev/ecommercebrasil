@@ -3,7 +3,7 @@ import { defineConfig } from "@pandacss/dev";
 export default defineConfig({
   // Whether to use css reset
   preflight: true,
-
+  presets: ["@pandacss/preset-base", "@park-ui/panda-preset"],
   // Where to look for your css declarations
   include: ["./src/**/*.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}"],
 
@@ -15,6 +15,6 @@ export default defineConfig({
     extend: {},
   },
 
-  // The output directory for your css system
+  jsxFramework: "react", // or 'solid' or 'vue'
   outdir: "styled-system",
 });
