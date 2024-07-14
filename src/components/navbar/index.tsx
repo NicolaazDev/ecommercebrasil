@@ -50,7 +50,7 @@ const navData = {
 
 export const NavbarComponent = () => {
   return (
-    <header className="w-full fixed top-0 left-[50%] translate-x-[-50%] max-w-screen-2xl z-[1000] bg-transparent mx-auto ">
+    <header className="fixed top-0 w-full max-w-screen-2xl z-[1000] bg-transparent">
       <div className="mx-auto flex max-w-full items-center justify-between py-4">
         <a href="/" className="flex items-center flex-row">
           <PackageOpenIcon size={40} />
@@ -60,11 +60,11 @@ export const NavbarComponent = () => {
           </span>
         </a>
         <NavigationMenu>
-          <NavigationMenuItem className="list-none pt-[15px] z-40">
+          <NavigationMenuItem className="list-none pt-[15px]">
             <NavigationMenuTrigger className="bg-transparent">
               Smartphones
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="grid z-[999999] grid-cols-[.75fr_1fr] p-4 min-w-[500px] ">
+            <NavigationMenuContent className="grid grid-cols-[.75fr_1fr] p-4 min-w-[500px]">
               <NavigationMenuLink>
                 <a
                   className="flex h-full w-full min-w-[180px] select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"

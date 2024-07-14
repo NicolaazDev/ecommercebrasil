@@ -1,48 +1,63 @@
 "use client";
 
-import React, { useLayoutEffect, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import {
-  OrbitControls,
-  useGLTF,
-  Stage,
-  useIntersect,
-  ScrollControls,
-  useScroll,
-} from "@react-three/drei";
-import * as THREE from "three";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import React, {
+  Suspense,
+  forwardRef,
+  useEffect,
+  useRef,
+  ComponentPropsWithRef,
+} from "react";
+import { Canvas } from "@react-three/fiber";
+import { useGLTF, Stage } from "@react-three/drei";
 
-interface ModelProps {
+type ModelProps = ComponentPropsWithRef<"div"> & {
   position: number[];
   rotation: number[];
-  initialRotation: number[];
-}
+};
 
-export const Model = React.forwardRef<THREE.Object3D, ModelProps>(
-  (props: any) => {
-    const { scene } = useGLTF("/assets/iphone14.glb");
+const Model = forwardRef<HTMLDivElement, ModelProps>((props, ref) => {
+  const { scene } = useGLTF("/assets/iphone14.glb");
 
-    const modelRef = useRef<THREE.Object3D>(null);
-    const tl = useRef<any>();
+  useEffect(() => {
+    console.log("Scene:", scene);
+  }, [scene]);
 
-    const scroll = useScroll();
+  return <primitive object={scene} {...props} />;
+});
 
-    useFrame(() => {
-      tl.current.seek(scroll.offset * tl.current.duration());
-    });
+const ThreeScene = () => {
+  const modelRef = useRef<HTMLDivElement>(null);
 
-    useLayoutEffect(() => {
-      tl.current = gsap.timeline();
+  return (
+    <Canvas
+      style={{ position: "absolute" }}
+      className="max-w-screen"
+      camera={{
+        position: [0, 0, 7.2],
+        fov: 50,
+        rotation: [0, 0, 0],
+        zoom: 36,
+      }}
+    >
+      <ambientLight intensity={0} />
+      <directionalLight position={[0, 110, 40]} intensity={1} />
+      <Suspense fallback={null}>
+        <Stage
+          preset="rembrandt"
+          intensity={1}
+          environment="city"
+          adjustCamera={false}
+          center={{ disable: true }}
+        >
+          <Model
+            ref={modelRef}
+            position={[0.09, -0.08, 0]}
+            rotation={[-0.19, -3.66, 0.03]}
+          />
+        </Stage>
+      </Suspense>
+    </Canvas>
+  );
+};
 
-      tl.current.to(modelRef.current!.position, {
-        y: -33.08,
-        duration: 1.5,
-        ease: "power3.inOut",
-      });
-    }, []);
-
-    return <primitive object={scene} ref={modelRef} {...props} />;
-  }
-);
+export default ThreeScene;

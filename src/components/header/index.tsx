@@ -1,17 +1,20 @@
-"use client";
-
 import React from "react";
+
+import "./styles.css";
+
+import Scene from "@/components/scene";
 import { Button } from "@/components/ui/button";
 
-interface HeaderSectionProps {}
-
-const HeaderSection: React.FC<HeaderSectionProps> = () => {
+export default function HeadPage() {
   return (
-    <section className="header__container w-full h-screen min-h-screen flex justify-center items-center">
+    <section className="w-full h-screen flex justify-center items-center">
+      <Scene />
+
       <div className="header-ball"></div>
+
       <div className="max-w-screen-2xl w-full h-full z-[55] flex items-center justify-start">
         <div className="max-w-[1000px] flex items-center justify-center flex-col">
-          <h1 className="text-4xl font-montagna text-center z-[-100] font-black text-primary uppercase text-[180px] leading-[190px]">
+          <h1 className="text-4xl font-montagna text-center font-black text-primary uppercase text-[180px] leading-[190px]">
             Sua loja de iphones
           </h1>
           <p className="text-center text-primary max-w-[1000px] mt-[20px] text-[20px]">
@@ -24,6 +27,4 @@ const HeaderSection: React.FC<HeaderSectionProps> = () => {
       </div>
     </section>
   );
-};
-
-export default HeaderSection;
+}
