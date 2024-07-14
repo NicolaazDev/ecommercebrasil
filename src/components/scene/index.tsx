@@ -1,29 +1,10 @@
 "use client";
 
-import React, {
-  Suspense,
-  forwardRef,
-  useEffect,
-  useRef,
-  ComponentPropsWithRef,
-} from "react";
+import React, { Suspense, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { useGLTF, Stage } from "@react-three/drei";
+import { Stage } from "@react-three/drei";
 
-type ModelProps = ComponentPropsWithRef<"div"> & {
-  position: number[];
-  rotation: number[];
-};
-
-const Model = forwardRef<HTMLDivElement, ModelProps>((props, ref) => {
-  const { scene } = useGLTF("/assets/iphone14.glb");
-
-  useEffect(() => {
-    console.log("Scene:", scene);
-  }, [scene]);
-
-  return <primitive object={scene} {...props} />;
-});
+import { Model } from "@/components/model";
 
 const ThreeScene = () => {
   const modelRef = useRef<HTMLDivElement>(null);
