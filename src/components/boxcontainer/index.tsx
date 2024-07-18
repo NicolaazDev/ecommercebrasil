@@ -26,7 +26,7 @@ export const RealeaseSection = () => {
     );
 
     gsap.fromTo(
-      ".text_up",
+      ".text_up2",
       { y: 0, opacity: 0 },
       {
         y: 1,
@@ -41,7 +41,7 @@ export const RealeaseSection = () => {
     );
 
     return () => {
-      gsap.killTweensOf(".items-grid .text_up");
+      gsap.killTweensOf(".items-grid .text_up2");
     };
   }, []);
 
@@ -49,10 +49,10 @@ export const RealeaseSection = () => {
     <section className="box_container bg-zinc-950 w-screen relative flex justify-center items-center overflow-hidden">
       <div className="max-w-screen-2xl h-full">
         <div className="flex flex-col justify-center items-center w-full">
-          <h1 className="text-8xl text_up text-center text-[#e6e6e6] uppercase font-montagna">
+          <h1 className="text-8xl text_up2 text-center text-[#e6e6e6] uppercase font-montagna">
             Oque vem na caixa?
           </h1>
-          <p className="text-[18px] text_up mt-5 opacity-85 text-center text-[#e6e6e6] ">
+          <p className="text-[18px] text_up2 mt-5 opacity-85 text-center text-[#e6e6e6] ">
             Veja oque vem de brinde ao comprar um de nossos produtos
           </p>
         </div>
