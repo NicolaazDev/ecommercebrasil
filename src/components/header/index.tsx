@@ -10,7 +10,11 @@ export default function HeadPage() {
     <section className="w-full h-screen flex justify-center items-center">
       <Scene />
 
-      <div className="header-ball"></div>
+      <img
+        className="background_img"
+        src="/assets/topograph3.webp"
+        alt="topo"
+      />
 
       <div className="max-w-screen-2xl w-full h-full z-[55] flex items-center justify-start">
         <div className="max-w-[1000px] flex items-center justify-center flex-col">

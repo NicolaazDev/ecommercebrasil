@@ -1,17 +1,15 @@
 "use client";
 
-import React, { Suspense, useRef } from "react";
+import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Stage } from "@react-three/drei";
 
 import { Model } from "@/components/model";
 
 const ThreeScene = () => {
-  const modelRef = useRef<HTMLDivElement>(null);
-
   return (
     <Canvas
-      style={{ position: "absolute" }}
+      style={{ position: "absolute", overflowY: "hidden" }}
       className="max-w-screen"
       camera={{
         position: [0, 0, 7.2],
@@ -30,11 +28,7 @@ const ThreeScene = () => {
           adjustCamera={false}
           center={{ disable: true }}
         >
-          <Model
-            ref={modelRef}
-            position={[0.09, -0.08, 0]}
-            rotation={[-0.19, -3.66, 0.03]}
-          />
+          <Model position={[0.09, -0.08, 0]} rotation={[-0.19, -3.66, 0.03]} />
         </Stage>
       </Suspense>
     </Canvas>

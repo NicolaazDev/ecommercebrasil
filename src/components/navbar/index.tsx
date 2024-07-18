@@ -10,7 +10,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
-import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const navData = {
   smartphones: [
@@ -49,8 +49,24 @@ const navData = {
 };
 
 export const NavbarComponent = () => {
+  const [hideNav, setHideNav] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setHideNav(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="fixed top-0 w-full max-w-screen-2xl z-[1000] bg-transparent">
+    <header
+      className={`left-[50%] fixed top-0 w-full max-w-screen-2xl transition ease-in-out duration-300 z-[1000] bg-transparent translate-x-[-50%] ${hideNav ? "-translate-y-full" : "translate-y-0"}`}
+    >
       <div className="mx-auto flex max-w-full items-center justify-between py-4">
         <a href="/" className="flex items-center flex-row">
           <PackageOpenIcon size={40} />
