@@ -1,7 +1,5 @@
 import React from "react";
 
-import "./styles.css";
-
 import Scene from "@/components/scene";
 import { Button } from "@/components/ui/button";
 

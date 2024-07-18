@@ -12,41 +12,7 @@ import {
 
 import { useEffect, useState } from "react";
 
-const navData = {
-  smartphones: [
-    { name: "Apple iPhone 14 Pro Max" },
-    { name: "Samsung Galaxy S21 Ultra" },
-    { name: "Google Pixel 6 Pro" },
-    { name: "OnePlus 9 Pro" },
-    { name: "Huawei P40 Pro" },
-    { name: "Xiaomi Mi 11 Ultra" },
-    { name: "Nokia 7.3" },
-    { name: "Motorola One Vision" },
-  ],
-  accessories: [
-    { name: "Fones de Ouvido" },
-    { name: "Power Bank" },
-    { name: "Cabos" },
-    { name: "Carregadores" },
-    { name: "Telas" },
-    { name: "Adaptadores" },
-  ],
-  laptops: [
-    { name: "Apple MacBook Pro 16" },
-    { name: "Asus ROG Strix" },
-    { name: "Dell XPS 13" },
-    { name: "HP Envy 13" },
-    { name: "Lenovo Legion 5" },
-    { name: "Samsung Chromebook 5" },
-    { name: "Toshiba Tecra 5" },
-  ],
-  services: [
-    { name: "Rastreio" },
-    { name: "Troca" },
-    { name: "Devolução" },
-    { name: "Seguro" },
-  ],
-};
+import { navData } from "@/data/navdat";
 
 export const NavbarComponent = () => {
   const [hideNav, setHideNav] = useState(false);

@@ -6,6 +6,52 @@
   .img-clip {
     clip-path: polygon(0 -100%, 100% 0, 100% 100%, 0% 100%);
   }
+  .radialcard-gradient {
+    background: radial-gradient(
+      circle,
+      rgba(14, 14, 14, 1) 0%,
+      rgba(8, 8, 8, 1) 100%
+    );
+  }
+  .background_img {
+    filter: grayscale(1) blur(0px);
+    z-index: -1;
+    opacity: 0.2;
+    position: absolute;
+    width: 1000px;
+    height: 100%;
+    object-fit: cover;
+    right: -70px;
+    transform: scale(1.2);
+  }
+  .info_button {
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .info_button:hover::after {
+    transform: translateY(0%);
+  }
+  .info_button::after {
+    position: absolute;
+    content: "Detalhes";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #181818;
+
+    transition: 0.4s ease;
+    transform: translateY(100%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+
+    font-size: 23px;
+    background: #ececec;
+  }
 }
 
 @layer base {
@@ -71,7 +117,10 @@
     font-family: "Poppins";
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+  }
+  html {
+    @apply overflow-x-hidden scroll-smooth;
   }
 }
 
