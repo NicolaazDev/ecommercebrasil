@@ -5,7 +5,9 @@ import NavbarComponent from "@/components/navbar";
 import React from "react";
 import HeaderSection from "@/components/header";
 import ProductsSection from "@/components/products";
-import { RealeaseSection } from "@/components/boxcontainer";
+import RealeaseSection from "@/components/boxcontainer";
+import FooterSection from "@/components/footer";
+import CategoriesSection from "@/components/categories";
 
 export default function HomePage() {
   return (
@@ -14,6 +16,8 @@ export default function HomePage() {
       <HeaderSection />
       <ProductsSection />
       <RealeaseSection />
+      <CategoriesSection />
+      <FooterSection />
     </div>
   );
 }

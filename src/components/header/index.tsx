@@ -1,5 +1,3 @@
-import React from "react";
-
 import Scene from "@/components/scene";
 import { Button } from "@/components/ui/button";
 

@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap-trial/all";
 
 import { ItemsBox } from "@/data/boxitems";
 
-export const RealeaseSection = () => {
+export default function RealeaseSection() {
   gsap.registerPlugin(ScrollTrigger);
 
   useLayoutEffect(() => {
@@ -46,7 +46,7 @@ export const RealeaseSection = () => {
   }, []);
 
   return (
-    <section className="box_container bg-zinc-950 w-screen relative flex justify-center items-center overflow-hidden">
+    <section className="box_container bg-zinc-950 w-screen relative flex justify-center items-center overflow-hidden pb-[200px]">
       <div className="max-w-screen-2xl h-full">
         <div className="flex flex-col justify-center items-center w-full">
           <h1 className="text-8xl text_up2 text-center text-[#e6e6e6] uppercase font-montagna">
@@ -56,7 +56,7 @@ export const RealeaseSection = () => {
             Veja oque vem de brinde ao comprar um de nossos produtos
           </p>
         </div>
-        <div className="grid items-grid grid-cols-3 gap-4 mt-12 translate-y-[40px]">
+        <div className="grid items-grid grid-cols-3 gap-4 mt-12 translate-y-[40px] pb-5">
           {ItemsBox.map(({ src, alt, title, description }) => (
             <div
               key={src}
@@ -79,4 +79,4 @@ export const RealeaseSection = () => {
       </div>
     </section>
   );
-};
+}

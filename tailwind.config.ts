@@ -22,6 +22,7 @@ const config = {
       serif: ["ui-serif", "Georgia"],
       mono: ["ui-monospace", "SFMono-Regular"],
       montagna: ["Montagna"],
+      jost: ["Jost"],
       poppins: ["Poppins"],
       monte: ["Monte"],
       display: ["Oswald"],

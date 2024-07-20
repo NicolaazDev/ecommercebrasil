@@ -145,6 +145,13 @@
   font-weight: 400;
 }
 
+@font-face {
+  font-family: "Jost";
+  src: url("../../public/fonts/jost.ttf");
+  font-style: normal;
+  font-weight: 400;
+}
+
 .slick-slide {
   transition: 1.4s ease;
   opacity: 0.6;
