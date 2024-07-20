@@ -5,7 +5,8 @@ import Slider, { Settings } from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+
 import { PackagePlusIcon } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap-trial/all";

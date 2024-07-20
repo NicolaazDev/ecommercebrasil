@@ -127,7 +127,7 @@ export default function CategoriesGrid() {
       </div>
 
       <img
-        className="background_img left-0 bottom-[-60px] h-[60%]"
+        className="background_img left-0 bottom-[-60px] fixheight"
         src="/assets/topograph3.webp"
         alt="topo"
       />
