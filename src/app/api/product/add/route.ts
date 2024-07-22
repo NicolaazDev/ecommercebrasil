@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { db } from "@/services/database";
 
 import {
   ConnectivityVariant,
@@ -7,8 +7,6 @@ import {
   RamVariant,
   StockVariant,
 } from "@/types/modelTypes";
-
-const prisma = new PrismaClient();
 
 export async function POST(request: NextRequest) {
   try {
@@ -40,7 +38,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const newProduct = await prisma.product.create({
+    const newProduct = await db.product.create({
       data: {
         name,
         description,

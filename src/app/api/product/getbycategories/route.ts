@@ -1,8 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
+import { NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 
-const prisma = new PrismaClient();
+import { db } from "@/services/database";
 
 export async function GET(req: NextRequest, res: NextApiResponse) {
   const url = new URL(req.url);
@@ -17,7 +16,7 @@ export async function GET(req: NextRequest, res: NextApiResponse) {
   }
 
   try {
-    const products = await prisma.product.findMany({
+    const products = await db.product.findMany({
       where: {
         category,
       },
