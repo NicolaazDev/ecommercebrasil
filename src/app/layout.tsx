@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import NavbarComponent from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: "IplaceBox - Home",
@@ -16,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        <NavbarComponent />
+        {children}
+      </body>
     </html>
   );
 }

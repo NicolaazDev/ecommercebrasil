@@ -47,7 +47,7 @@ export const NavbarComponent = () => {
               Smartphones
             </NavigationMenuTrigger>
             <NavigationMenuContent className="grid grid-cols-[.75fr_1fr] p-4 min-w-[500px]">
-              <NavigationMenuLink>
+              <NavigationMenuLink key={"smartphones"}>
                 <a
                   className="flex h-full w-full min-w-[180px] select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                   href="/shop/smartphones"
@@ -88,7 +88,7 @@ export const NavbarComponent = () => {
               Laptops
             </NavigationMenuTrigger>
             <NavigationMenuContent className="grid grid-cols-[.75fr_1fr] p-4 min-w-[500px]">
-              <NavigationMenuLink>
+              <NavigationMenuLink key={"laptops"}>
                 <a
                   className="flex h-full w-full min-w-[180px] select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                   href="/shop/laptops"
@@ -129,7 +129,7 @@ export const NavbarComponent = () => {
               Acessórios
             </NavigationMenuTrigger>
             <NavigationMenuContent className="grid grid-cols-[.75fr_1fr] p-4 min-w-[500px] bg-transparent">
-              <NavigationMenuLink>
+              <NavigationMenuLink key={"accessories"}>
                 <a
                   className="flex h-full w-full min-w-[180px] select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                   href="/shop/accessories"
@@ -164,12 +164,13 @@ export const NavbarComponent = () => {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
+
           <NavigationMenuItem className="list-none pt-[15px]">
             <NavigationMenuTrigger className="bg-transparent">
               Serviços
             </NavigationMenuTrigger>
             <NavigationMenuContent className="grid grid-cols-[.75fr_1fr] p-4 min-w-[500px]">
-              <NavigationMenuLink>
+              <NavigationMenuLink key={"services"}>
                 <a
                   className="flex h-full w-full min-w-[180px] select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                   href="/shop/services"

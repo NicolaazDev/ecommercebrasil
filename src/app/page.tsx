@@ -5,7 +5,6 @@ import {
   Categories,
   Footer,
   Header,
-  Navbar,
   Products,
   Realease,
 } from "@/components/sections";
@@ -13,7 +12,6 @@ import {
 export default function HomePage() {
   return (
     <div className="scroll-smooth max-w-screen overflow-x-hidden mx-auto flex-col ">
-      <Navbar />
       <Header />
       <Products />
       <Realease />

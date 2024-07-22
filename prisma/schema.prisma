@@ -40,3 +40,55 @@ model User {
   updatedAt      DateTime  @updatedAt
   accounts       Account[]
 }
+
+model Product {
+  id                   String            @id @default(auto()) @map("_id") @db.ObjectId
+  name                 String
+  description          String
+  basePrice            Float
+  imageUrl             String
+  category             String
+  boxIncluded          Boolean           @default(false)
+  insuranceIncluded    Boolean           @default(false)
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
+  stockVariants        StockVariant[]
+  ramVariants          RamVariant[]
+  connectivityVariants ConnectivityVariant[]
+}
+
+model StockVariant {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  productId     String        @db.ObjectId
+  color         String
+  hexColor      String
+  storage       String
+  storagePrice  Float
+  stock         Int
+  images        ProductImage[]
+  Product       Product       @relation(fields: [productId], references: [id])
+}
+
+model ProductImage {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  stockVariantId String       @db.ObjectId
+  imageUrl      String
+  StockVariant  StockVariant  @relation(fields: [stockVariantId], references: [id])
+}
+
+model RamVariant {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  productId String   @db.ObjectId
+  ram       String
+  price     Float
+  Product   Product  @relation(fields: [productId], references: [id])
+}
+
+model ConnectivityVariant {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  productId     String   @db.ObjectId
+  connectivity  String
+  price         Float
+  Product       Product  @relation(fields: [productId], references: [id])
+}
+
