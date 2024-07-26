@@ -27,27 +27,31 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { products } from "@/data/products";
 
 import { ProductTypes } from "@/types/modelTypes";
 import { StockVariant } from "@prisma/client";
 
 import React from "react";
 
-async function fetchProducts(category: string): Promise<ProductTypes[]> {
+async function fetchProduct(id: string) {
   const response = await fetch(
-    `${process.env.API_BASE_URL}/api/product/getbycategories?category=${category}`
+    `${process.env.API_BASE_URL}/api/product/getproduct?id=${id}`
   );
 
   const data = await response.json();
+
   return data;
 }
 
 export default async function ShopPage({
   params,
 }: {
-  params: { category: string };
+  params: { product: string };
 }) {
-  // const products: any = await fetchProducts(params.category);
+  const product: any = await fetchProduct(params.product);
+
+  // console.log(product);
 
   const imageArray = [
     "https://res.cloudinary.com/dmceve2cp/image/upload/v1721282594/513naL3U_8L_kmpuon.png",
@@ -61,49 +65,40 @@ export default async function ShopPage({
   return (
     <main className="max-w-screen flex justify-center items-center overflow-y-hidden">
       <div className="max-w-screen-2xl w-full flex justify-center items-center flex-col ">
-        <div className="w-full py-8 flex justify-start items-center">
-          <Breadcrumb>
-            <BreadcrumbList className="text-[18px]">
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/shop">Shop</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage className="capitalize">
-                  {params.category}
-                </BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
-
-        <div className="w-full grid grid-cols-[2fr_1.3fr] h-[800px] mt-[40px] overflow-y-hidden">
-          <div className="w-full h-full flex justify-center items-center">
+        <div className="w-full grid grid-cols-[2fr_1.3fr] h-[800px] overflow-y-hidden mt-[100px]">
+          <div className="w-full h-full flex justify-center items-center flex-col">
+            <div className="w-full py-8 flex justify-start items-center">
+              <Breadcrumb>
+                <BreadcrumbList className="text-[18px]">
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="/shop">Shop</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage className="capitalize">
+                      {params.product}
+                    </BreadcrumbPage>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
             <CarrouselProduct imageArray={imageArray} />
           </div>
 
           <div className="w-full h-[95%] flex justify-center items-start overflow-y-scroll">
             <div className="bg-white p-8 rounded-lg shadow-lg w-full">
               <h2 className="text-[32px] font-[900] leading-[32px] uppercase mb-2">
-                Iphone 14 Pro Max
+                {product.name}
               </h2>
               <p className="text-[18px] text-gray-600 mb-4">
-                64GB com camera dupla de 48MP e 12MP. Tela de 6.7 polegadas.
+                {product.description}
               </p>
 
-              <div className="bg-gray-100 p-4 rounded-lg mb-4">
-                <p className="text-gray-500 line-through">R$ 10.999,00</p>
-                <h3 className="text-[30px] font-[900] mb-2">R$ 7.999,00</h3>
-                <p className="text-green-500">-20% de desconto</p>
-              </div>
-
-              <Separator className="my-8" />
-
-              <Form />
+              {product && <Form data={product.stockVariants} />}
             </div>
           </div>
         </div>

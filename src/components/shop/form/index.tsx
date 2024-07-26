@@ -6,11 +6,12 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Button } from "@/components/ui/button";
 
 import { z } from "zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Separator } from "@/components/ui/separator";
 
 const cepSchema = z.string().regex(/^\d{5}-\d{3}$/, "CEP inválido");
 
-export default function Form() {
+export default function Form({ data }: any) {
   const [cep, setCep] = useState("");
   const [error, setError] = useState("");
 
@@ -30,8 +31,67 @@ export default function Form() {
     }
   };
 
+  const filterUniqueColors = (data: any) => {
+    const uniqueColors: any = [];
+    data.forEach(({ color, hexColor }: any) => {
+      if (!uniqueColors.find((item: any) => item.color === color)) {
+        uniqueColors.push({ color, hexColor });
+      }
+    });
+    return uniqueColors;
+  };
+
+  // Função para filtrar storage duplicado
+  const filterUniqueStorage = (data: any) => {
+    const uniqueStorage: any = [];
+    data.forEach(({ storage }: any) => {
+      if (!uniqueStorage.find((item: any) => item.storage === storage)) {
+        uniqueStorage.push({ storage });
+      }
+    });
+    return uniqueStorage;
+  };
+
+  const filteredColors = filterUniqueColors(data);
+  const filteredStorage = filterUniqueStorage(data);
+
+  const [selectedColor, setSelectedColor] = useState(data[0].color);
+  const [selectedStorage, setSelectedStorage] = useState(data[0].storage);
+  const [price, setPrice] = useState(data[0].storagePrice);
+  const [stock, setStock] = useState(data[0].stock);
+
+  const handleColorChange = (color: any) => {
+    setSelectedColor(color);
+    updateProductDetails(color, selectedStorage);
+  };
+
+  const handleStorageChange = (storage: any) => {
+    setSelectedStorage(storage);
+    updateProductDetails(selectedColor, storage);
+  };
+
+  const updateProductDetails = (color: any, storage: any) => {
+    const selectedVariant = data.find(
+      (variant: any) => variant.color === color && variant.storage === storage
+    );
+    if (selectedVariant) {
+      setPrice(selectedVariant.storagePrice);
+      setStock(selectedVariant.stock);
+
+      console.log("Selected Variant Stock:", selectedVariant.images);
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit}>
+      <div className="bg-gray-100 p-4 rounded-lg mb-4">
+        <p className="text-gray-500 line-through">R$ 10.999,00</p>
+        <h3 className="text-[30px] font-[900] mb-2">R$ {price},00</h3>
+        <p className="text-green-500">-20% de desconto</p>
+      </div>
+
+      <Separator className="my-8" />
+
       <div className="mb-4 w-full ">
         <span className="block text-gray-700 text-[16px] font-bold mb-3">
           Calcular prazo de Entrega
@@ -60,36 +120,25 @@ export default function Form() {
           Escolha a cor
         </span>
         <div className="flex gap-2">
-          <ToggleGroup type="single" variant={"outline"} defaultValue="1">
-            <ToggleGroupItem
-              aria-span="Toggle red"
-              value="1"
-              className={`w-[50px] h-[50px] p-0 border-[1px] transition-[all__0.5s_ease] border-solid border-transparent data-[state=on]:border-[#ff8724] data-[state=on]:shadow-[0px_1px_10px_1px_#ff8724] `}
-            >
-              <div className="bg-yellow-500 h-full w-full rounded-sm"></div>
-            </ToggleGroupItem>
-
-            <ToggleGroupItem
-              aria-span="Toggle red"
-              value="2"
-              className={`w-[50px] h-[50px] p-0 border-[1px] transition-[all__0.5s_ease] border-solid border-transparent data-[state=on]:border-[#ff8724] data-[state=on]:shadow-[0px_1px_10px_1px_#ff8724] `}
-            >
-              <div className="bg-yellow-500 h-full w-full rounded-sm"></div>
-            </ToggleGroupItem>
-            <ToggleGroupItem
-              aria-span="Toggle red"
-              value="3"
-              className={`w-[50px] h-[50px] p-0 border-[1px] transition-[all__0.5s_ease] border-solid border-transparent data-[state=on]:border-[#ff8724] data-[state=on]:shadow-[0px_1px_10px_1px_#ff8724] `}
-            >
-              <div className="bg-yellow-500 h-full w-full rounded-sm"></div>
-            </ToggleGroupItem>
-            <ToggleGroupItem
-              aria-span="Toggle red"
-              value="4"
-              className={`w-[50px] h-[50px] p-0 border-[1px] transition-[all__0.5s_ease] border-solid border-transparent data-[state=on]:border-[#ff8724] data-[state=on]:shadow-[0px_1px_10px_1px_#ff8724] `}
-            >
-              <div className="bg-yellow-500 h-full w-full rounded-sm"></div>
-            </ToggleGroupItem>
+          <ToggleGroup
+            type="single"
+            variant="outline"
+            defaultValue={selectedColor}
+            onValueChange={handleColorChange}
+          >
+            {filteredColors.map(({ color, hexColor }: any) => (
+              <ToggleGroupItem
+                key={color}
+                aria-span={`Toggle ${color}`}
+                value={color}
+                className={`w-[50px] h-[50px] p-0 border-[1px] transition-[all_0.5s_ease] border-solid border-transparent data-[state=on]:border-[#ff8724] data-[state=on]:shadow-[0px_1px_10px_1px_#ff8724]`}
+              >
+                <div
+                  className="h-full w-full rounded-sm"
+                  style={{ backgroundColor: hexColor }}
+                ></div>
+              </ToggleGroupItem>
+            ))}
           </ToggleGroup>
         </div>
       </div>
@@ -99,28 +148,22 @@ export default function Form() {
           Escolha a capacidade
         </span>
         <div className="flex gap-2">
-          <ToggleGroup type="single" variant={"outline"} defaultValue="1">
-            <ToggleGroupItem
-              aria-span="Toggle red"
-              value="1"
-              className={`w-[90px] h-[50px] p-0 border-[1px] transition-[all__0.5s_ease] border-solid border-[#b4b4b4] data-[state=on]:border-[#ff8724] data-[state=on]:shadow-[0px_1px_10px_1px_#ff8724] `}
-            >
-              <div>64GB</div>
-            </ToggleGroupItem>
-            <ToggleGroupItem
-              aria-span="Toggle red"
-              value="2"
-              className={`w-[90px] h-[50px] p-0 border-[1px] transition-[all__0.5s_ease] border-solid border-[#b4b4b4] data-[state=on]:border-[#ff8724] data-[state=on]:shadow-[0px_1px_10px_1px_#ff8724] `}
-            >
-              <div>64GB</div>
-            </ToggleGroupItem>
-            <ToggleGroupItem
-              aria-span="Toggle red"
-              value="3"
-              className={`w-[90px] h-[50px] p-0 border-[1px] transition-[all__0.5s_ease] border-solid border-[#b4b4b4] data-[state=on]:border-[#ff8724] data-[state=on]:shadow-[0px_1px_10px_1px_#ff8724] `}
-            >
-              <div>64GB</div>
-            </ToggleGroupItem>
+          <ToggleGroup
+            type="single"
+            variant="outline"
+            defaultValue={selectedStorage}
+            onValueChange={handleStorageChange}
+          >
+            {filteredStorage.map(({ storage }: any) => (
+              <ToggleGroupItem
+                key={storage}
+                aria-span={`Toggle ${storage}`}
+                value={storage}
+                className={`w-[90px] h-[50px] p-0 border-[1px] transition-[all_0.5s_ease] border-solid border-[#b4b4b4] data-[state=on]:border-[#ff8724] data-[state=on]:shadow-[0px_1px_10px_1px_#ff8724]`}
+              >
+                <div>{storage}</div>
+              </ToggleGroupItem>
+            ))}
           </ToggleGroup>
         </div>
       </div>
