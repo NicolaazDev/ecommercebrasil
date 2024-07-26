@@ -115,6 +115,25 @@
 }
 
 @layer base {
+  *::-webkit-scrollbar {
+    width: 8px; /* Largura da scrollbar vertical */
+    height: 4px; /* Altura da scrollbar horizontal */
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #242424; /* Cor do fundo da track */
+    border-radius: 3px; /* Borda arredondada da track */
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #9fb5ff; /* Cor do thumb */
+    border-radius: 3px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #7c9bff; /* Cor do thumb no hover */
+  }
+
   * {
     @apply border-border;
     font-family: "Poppins";

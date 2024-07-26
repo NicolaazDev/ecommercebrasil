@@ -31,12 +31,11 @@ export const NavbarComponent = () => {
 
   return (
     <header
-      className={`left-[50%] fixed top-0 w-full max-w-screen-2xl transition ease-in-out duration-300 z-[1000] bg-transparent translate-x-[-50%] ${hideNav ? "-translate-y-full" : "translate-y-0"}`}
+      className={`left-[50%] fixed top-0 w-full max-w-screen-2xl transition ease-in-out duration-300 z-[1] bg-transparent translate-x-[-50%] ${hideNav ? "-translate-y-full" : "translate-y-0"}`}
     >
       <div className="mx-auto flex max-w-full items-center justify-between py-4">
         <a href="/" className="flex items-center flex-row">
           <PackageOpenIcon size={40} />
-          {/* <img src="/logo.png" alt="Logo" className="w-auto h-[110px]" /> */}
           <span className="ml-[10px] leading-4 font-extrabold">
             IPLACE <br /> BOX
           </span>

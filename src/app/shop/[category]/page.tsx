@@ -81,10 +81,10 @@ export default async function ShopPage({
       <div className="max-w-screen-2xl w-full flex justify-center items-center flex-col">
         <div className="w-full mt-[100px] relative h-[410px] itens_container">
           <div className="w-full h-full bg-[#000000c0] rounded-[15px] flex justify-center items-center flex-col">
-            <h1 className="text-4xl font-montagna text-center text-[#e7e7e7] font-black text-primary uppercase text-[180px] leading-[190px] ">
+            <h1 className="text-4xl font-montagna text-center text-[#e7e7e7] font-black uppercase text-[180px] leading-[190px] ">
               {categoryInfo[params.category].title}
             </h1>
-            <p className="text-center text-primary text-[#e7e7e7] max-w-[1000px] mt-[20px] text-[20px]">
+            <p className="text-center text-[#e7e7e7] max-w-[1000px] mt-[20px] text-[20px]">
               {categoryInfo[params.category].desc}
             </p>
           </div>
