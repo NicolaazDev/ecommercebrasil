@@ -73,6 +73,17 @@ export default async function ShopPage({
     },
   };
 
+  // if (!products) {
+  //   return (
+  //     <div className="w-full h-screen flex justify-center items-center space-x-1">
+  //       <p>Produto não existe, volte home</p>
+  //       <a className="underline" href="/shop">
+  //         novo
+  //       </a>
+  //     </div>
+  //   );
+  // }
+
   const imageUrl =
     categoryImages[params.category] || "/assets/default_topograph.webp";
 

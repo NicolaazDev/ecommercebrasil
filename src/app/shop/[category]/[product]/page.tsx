@@ -39,6 +39,10 @@ async function fetchProduct(id: string) {
     `${process.env.API_BASE_URL}/api/product/getproduct?id=${id}`
   );
 
+  if (!response.ok) {
+    return null;
+  }
+
   const data = await response.json();
 
   return data;
@@ -51,7 +55,16 @@ export default async function ShopPage({
 }) {
   const product: any = await fetchProduct(params.product);
 
-  // console.log(product);
+  if (!product) {
+    return (
+      <div className="w-full h-screen flex justify-center items-center space-x-1">
+        <p>Produto não existe, volte home</p>
+        <a className="underline" href="/">
+          novo
+        </a>
+      </div>
+    );
+  }
 
   const imageArray = [
     "https://res.cloudinary.com/dmceve2cp/image/upload/v1721282594/513naL3U_8L_kmpuon.png",

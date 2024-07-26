@@ -32,7 +32,7 @@ export async function GET(req: NextRequest, res: NextApiResponse) {
     });
 
     if (!product) {
-      return res.status(404).json({ message: "Produto não encontrado" });
+      return NextResponse.json(null, { status: 400 });
     }
 
     console.log(product); // até aq ta certo
