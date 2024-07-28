@@ -22,15 +22,22 @@ export interface ConnectivityVariant {
 }
 
 export interface ProductTypes {
+  id: string;
   name: string;
   description: string;
   basePrice: number;
+  ref: string;
   imageUrl: string;
   boxIncluded?: boolean;
+  descountedPrice: number;
+  insurancePrice: number;
+  descountPercent: number;
+  descountIncluded?: boolean;
+  insurancePercent: number;
+  boxPrice: number;
   category: string;
   insuranceIncluded?: boolean;
   stockVariants: StockVariant[];
   ramVariants?: RamVariant[];
   connectivityVariants?: ConnectivityVariant[];
-  products?: any;
 }

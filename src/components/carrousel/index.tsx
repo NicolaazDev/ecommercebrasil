@@ -8,21 +8,27 @@ import {
 
 import React, { useEffect, useMemo, useState } from "react";
 
+type Image = {
+  imageUrl: string;
+};
+
+type CarrouselProductProps = {
+  imageArray: Image[];
+};
+
 export default function CarrouselProduct({
   imageArray,
-}: {
-  imageArray: string[];
-}) {
+}: CarrouselProductProps) {
   const [mainApi, setMainApi] = useState<any>();
   const [thumbnailApi, setThumbnailApi] = useState<any>();
   const [current, setCurrent] = useState(0);
 
   const mainImage = useMemo(
     () =>
-      imageArray.map((image, index) => (
+      imageArray.map(({ imageUrl }, index) => (
         <CarouselItem key={index} className="relative aspect-square w-full">
           <img
-            src={image}
+            src={imageUrl}
             className="h-full"
             alt={`Carousel Main Image ${index + 1}`}
             style={{ objectFit: "cover" }}
@@ -34,7 +40,7 @@ export default function CarrouselProduct({
 
   const thumbnailImages = useMemo(
     () =>
-      imageArray.map((image, index) => (
+      imageArray.map(({ imageUrl }, index) => (
         <CarouselItem
           key={index}
           className="relative aspect-square w-full basis-1/4"
@@ -42,7 +48,7 @@ export default function CarrouselProduct({
         >
           <img
             className={`${index === current ? "border-2" : ""}`}
-            src={image}
+            src={imageUrl}
             alt={`Carousel Thumbnail Image ${index + 1}`}
             style={{ objectFit: "cover" }}
           />

@@ -4,26 +4,28 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { useMask } from "@react-input/mask";
+import { z } from "zod";
+
+interface InputCepProps {
+  buttonText: string;
+  placeholder: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  error?: string;
+}
+
+const cepSchema = z.string().regex(/^\d{5}-\d{3}$/, "CEP inválido");
 
 export default function InputCep({
   buttonText,
   placeholder,
   onChange,
-  onSubmit,
   value,
   error,
   ...props
-}: {
-  buttonText: string;
-  placeholder: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: React.FormEvent) => void;
-  value: string;
-  error?: string;
-} & Omit<React.HTMLProps<HTMLDivElement>, "ref">) {
+}: InputCepProps & Omit<React.HTMLProps<HTMLDivElement>, "ref">) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(e);
   };
 
   const inputRef = useMask({

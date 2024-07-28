@@ -6,9 +6,9 @@ import { db } from "@/services/database";
 export async function GET(req: NextRequest, res: NextApiResponse) {
   const url = new URL(req.url);
   const searchParams = new URLSearchParams(url.search);
-  const id = searchParams.get("id");
+  const ref = searchParams.get("ref");
 
-  if (typeof id !== "string") {
+  if (typeof ref !== "string") {
     return NextResponse.json(
       { message: "Parâmetro inválido" },
       { status: 400 }
@@ -16,9 +16,9 @@ export async function GET(req: NextRequest, res: NextApiResponse) {
   }
 
   try {
-    const product = await db.product.findUnique({
+    const product = await db.product.findFirst({
       where: {
-        id,
+        ref,
       },
       include: {
         stockVariants: {
@@ -34,8 +34,6 @@ export async function GET(req: NextRequest, res: NextApiResponse) {
     if (!product) {
       return NextResponse.json(null, { status: 400 });
     }
-
-    console.log(product); // até aq ta certo
 
     return NextResponse.json(product, { status: 200 });
   } catch (error) {

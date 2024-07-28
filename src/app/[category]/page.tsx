@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
-import { ProductTypes } from "@/types/modelTypes";
+import { ProductTypes } from "@/interfaces/modelTypes";
 import { StockVariant } from "@prisma/client";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap-trial/all";
@@ -43,7 +43,7 @@ export default async function ShopPage({
     mac: "https://media.wired.com/photos/5bd883dc5b66a763e54f0b22/master/pass/macbookair3.jpg",
     airpods:
       "https://media.wired.com/photos/632b71c4f1e5c40d2b1bc705/master/pass/AirPods-Pro-2nd-Gen-Gear.jpg",
-    iphone:
+    iphones:
       "https://www.vodacombusiness.co.za/sites/vodacombusinesscoza/files/styles/extra_large_landscape/public/2022-11/vb_desktopbanner_1920x720_iphone_14_pro1.jpg?itok=i2n1frC_",
     ipad: "https://blogdoiphone.com/wp-content/uploads/2022/03/iPadAir5.jpg",
     watch:
@@ -59,7 +59,7 @@ export default async function ShopPage({
       title: "AirPods",
       desc: "AirPods Pro, AirPods Max e AirPods 3. Confira aqui os modelos que a Apple oferece.",
     },
-    iphone: {
+    iphones: {
       title: "iPhone",
       desc: "iPhone 14, iPhone 14 Plus e iPhone 14 Pro. Confira aqui os modelos que a Apple oferece.",
     },

@@ -6,7 +6,7 @@ import {
   ProductTypes,
   RamVariant,
   StockVariant,
-} from "@/types/modelTypes";
+} from "@/interfaces/modelTypes";
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,6 +19,11 @@ export async function POST(request: NextRequest) {
       category,
       boxIncluded = false,
       insuranceIncluded = false,
+      descountIncluded = false,
+      boxPrice,
+      ref,
+      insurancePercent,
+      descountPercent,
       stockVariants,
       ramVariants,
       connectivityVariants,
@@ -43,10 +48,21 @@ export async function POST(request: NextRequest) {
         name,
         description,
         basePrice,
+        ref,
         imageUrl,
         category,
         boxIncluded,
+        descountIncluded,
+        descountPercent,
+        boxPrice: boxIncluded ? boxPrice : null,
+        descountedPrice: descountIncluded
+          ? basePrice - (basePrice * descountPercent) / 100
+          : null,
+        insurancePrice: insuranceIncluded
+          ? (basePrice * insurancePercent) / 100
+          : null,
         insuranceIncluded,
+        insurancePercent,
         stockVariants: {
           create: stockVariants.map((variant: StockVariant) => ({
             color: variant.color,

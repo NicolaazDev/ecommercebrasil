@@ -76,7 +76,8 @@
     "three": "^0.166.1",
     "use-cannon": "^0.5.3",
     "vaul": "^0.9.1",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@pandacss/dev": "^0.42.0",
